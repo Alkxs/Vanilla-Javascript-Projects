@@ -9,7 +9,9 @@ function getRandomColor() {
   const g = getRandomNumber(0, 255);
   const b = getRandomNumber(0, 255);
 
-  document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+  const randomColor = `rgb(${r}, ${g}, ${b})`;
+
+  document.body.style.backgroundColor = randomColor;
 }
 
 // function generateRandomColor() {
