@@ -8,3 +8,4 @@ The list of the projects will be included and updated here in the README file on
 
 | #             | Project        | Live Demo  |
 | --------------|:-------------| ----------:|
+|1| [Color Flipper](https://github.com/Alkxs/Vanilla-Javascript-Projects/tree/main/1.%20Color%20Flipper)| [Live Demo](https://legendary-blini-8eca65.netlify.app) |
