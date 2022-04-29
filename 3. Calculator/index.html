@@ -4,35 +4,60 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    /> -->
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
     <title>Calculator</title>
   </head>
   <body>
-    <div class="container">
+    <main>
       <div class="calculator">
-        <div class="screen"></div>
+        <input type="text" class="screen" value="0" disabled>
         <div class="numbers">
-          <div class="num num--1"></div>
-          <div class="num num--2"></div>
-          <div class="num num--3"></div>
-          <div class="num num--4"></div>
-          <div class="num num--5"></div>
-          <div class="num num--6"></div>
-          <div class="num num--7"></div>
-          <div class="num num--8"></div>
-          <div class="num num--9"></div>
+
+          <button type='button' class='clear' value="clear">AC</button>
+          <button type='button' class='delete' value="delete"><i class="fa-solid fa-delete-left"></i></button>
+          <button type='button' class='percentage' value="%">%</button>
+          <button type='button' class='operator' value="/">/</button>
+
+          <button type='button' value="7">7</button>
+          <button type='button' value="8">8</button>
+          <button type='button' value="9">9</button>
+          <button type='button' class='operator' value="x">x</button>
+
+          <button type='button' value="4">4</button>
+          <button type='button' value="5">5</button>
+          <button type='button' value="6">6</button>
+          <button type='button' class='operator' value="-">-</button>
+
+          <button type='button' value="1">1</button>
+          <button type='button' value="2">2</button>
+          <button type='button' value="3">3</button>
+          <button type='button' class='operator' value="+">+</button>
+
+          <button type="button" value="0">0</button>
+          <button type="button" class="decimal" value=".">.</button>
+          <button type="button" class="equal-sign" value="=">=</button>
+
         </div>
       </div>
+      </main>
       <footer>
-        <p>made with love ♥️ by Alex Lauri</p>
+        <p>Copyright ©
+          <script>
+          document.write(new Date().getFullYear())
+        </script>
+        Alkxs
+        </p>
+        <a href="https://github.com/Alkxs" target="_blank">
+        <i class="fab fa-github"></i
+      ></a>
       </footer>
     </div>
   </body>
