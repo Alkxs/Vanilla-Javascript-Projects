@@ -6,15 +6,19 @@
   --border: #333;
   --screen: rgb(247, 247, 247);
   --calculator: rgb(167, 167, 167);
+
   --btn: #eee;
   --btn-hover: #ddd;
   --btn-active: #ccc;
-  --btn-red: #faa;
-  --btn-red-hover: #e99;
-  --btn-red-active: #d88;
-  --btn-blue: #aaf;
-  --btn-blue-hover: #99e;
-  --btn-blue-active: #88d;
+
+  --btn-clear: rgb(252, 91, 91);
+  --btn-clear-hover: rgb(226, 68, 68);
+  --btn-clear-active: rgb(185, 49, 49);
+
+  --btn-equal-sign: #39a5ed;
+  --btn-equal-sign-hover: #349adf;
+  --btn-equal-sign-active: #2976a9;
+
   --btn-operator: #10649c;
 }
 
@@ -28,7 +32,6 @@
 
 html {
   font-size: 62.5%;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -41,22 +44,26 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 75vh;
+  height: 90vh;
   min-height: 45rem;
   padding: 2rem;
 }
 
 .calculator {
   width: 40rem;
+  height: 60rem;
   border: 1px var(--border) solid;
   padding: 2rem;
   border-radius: 1.5rem;
   background-color: var(--calculator);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .screen {
   width: 100%;
-  height: 8rem;
+  height: 10rem;
   background-color: var(--screen);
   color: var(--font);
   text-align: right;
@@ -74,7 +81,7 @@ main {
 }
 
 button {
-  height: 6rem;
+  height: 7rem;
   background-color: var(--btn);
   border-radius: 0.5rem;
   border: 0.1rem var(--border) solid;
@@ -86,8 +93,39 @@ button:hover {
   background-color: var(--btn-hover);
 }
 
+button:active {
+  background-color: var(--btn-active);
+}
+
 .operator {
   color: var(--btn-operator);
+}
+
+.equal-sign {
+  background-color: var(--btn-equal-sign);
+  color: var(--btn);
+  grid-column: 3 / 5;
+}
+
+.equal-sign:hover {
+  background-color: var(--btn-equal-sign-hover);
+}
+
+.equal-sign:active {
+  background-color: var(--btn-equal-sign-active);
+}
+
+.clear {
+  background-color: var(--btn-clear);
+  color: var(--btn);
+}
+
+.clear:hover {
+  background-color: var(--btn-clear-hover);
+}
+
+.clear:active {
+  background-color: var(--btn-clear-active);
 }
 
 footer {
@@ -97,5 +135,5 @@ footer {
   font-size: 2rem;
   gap: 1rem;
   padding: 1rem;
-  height: 25vh;
+  height: 10vh;
 }
