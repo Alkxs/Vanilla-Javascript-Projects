@@ -73,7 +73,7 @@ main {
   border: 0.1rem var(--border) solid;
 }
 
-.numbers {
+.keys {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
@@ -87,6 +87,7 @@ button {
   border: 0.1rem var(--border) solid;
   font-size: 2rem;
   color: var(--font);
+  cursor: pointer;
 }
 
 button:hover {
@@ -99,6 +100,11 @@ button:active {
 
 .operator {
   color: var(--btn-operator);
+}
+
+.delete {
+  grid-column: 2 / span 2;
+  font-size: 4rem;
 }
 
 .equal-sign {
