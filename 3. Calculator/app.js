@@ -1,45 +1,63 @@
-const calculator = document.querySelector('.calculator');
+const display = document.querySelector('.display');
 const keys = document.querySelectorAll('.keys');
-const screen = document.querySelector('.screen');
+
+const previous = document.getElementById('previous')
+const current = document.getElementById('current')
 
 const numbers = document.querySelectorAll('[data-type="number"]');
 const operators = document.querySelectorAll('[data-type="operation"]');
+
 const decimal = document.querySelector('.decimal');
 const equal = document.querySelector('[data-type="equal"]');
 const clear = document.querySelector('[data-type="clear"]');
 const deleteLast = document.querySelector('[data-type="delete"]');
 
-// keys.forEach((num) => {
-//   num.addEventListener('click', (e) => {
-//     let key = e.target;
-//     let keyValue = key.textContent;
-//     let displayValue = screen.textContent;
-//     screen.textContent = keyValue;
-//   });
-// });
+keys.forEach((num) => {
+  num.addEventListener('click', (e) => {
+    let key = e.target;
+    let keyValue = key.textContent;
+    let displayValue = display.textContent;
+    display.textContent = keyValue;
 
-let buttons = Array.from(keys);
-
-buttons.map((key) => {
-  key.addEventListener('click', (e) => {
-    switch (e.target.innerText) {
+    switch (keyValue) {
       case 'AC':
-        screen.innerText = '';
+        display.textContent = '';
         break;
       case '←':
-        if (screen.innerText) {
-          screen.innerText = screen.innerText.slice(0, -1);
+        if (display.textContent) {
+          display.textContent = display.textContent.slice(0, -1);
         }
         break;
       case '=':
-        try {
-          screen.innerText = eval(screen.innerText);
-        } catch {
-          screen.innerText = 'Error';
-        }
-        break;
-      default:
-        screen.innerText += e.target.innerText;
+        compute()
     }
   });
 });
+
+compute(number, op, number2) {
+}
+
+// let buttons = Array.from(keys);
+// buttons.map((key) => {
+//   key.addEventListener('click', (e) => {
+//     switch (e.target.innerText) {
+//       case 'AC':
+//         display.innerText = '';
+//         break;
+//       case '←':
+//         if (display.innerText) {
+//           display.innerText = display.innerText.slice(0, -1);
+//         }
+//         break;
+//       case '=':
+//         try {
+//           display.innerText = eval(display.innerText);
+//         } catch {
+//           display.innerText = 'Error';
+//         }
+//         break;
+//       default:
+//         display.innerText += e.target.innerText;
+//     }
+//   });
+// });
