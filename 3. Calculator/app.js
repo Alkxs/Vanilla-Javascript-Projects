@@ -1,57 +1,164 @@
-const display = document.querySelector('.display');
-const keys = document.querySelectorAll('.keys');
+let currentNum = '';
+let previousNum = '';
+let operator = '';
 
-const previous = document.getElementById('previous');
-const current = document.getElementById('current');
+const previousDisplay = document.getElementById('previous');
+const currentDisplay = document.getElementById('current');
 
-const numbers = document.querySelectorAll('[data-type="number"]');
-const operators = document.querySelectorAll('[data-type="operation"]');
+window.addEventListener('keydown', handleKeyPress);
+
+const numbers = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
 
 const decimal = document.querySelector('.decimal');
-const equal = document.querySelector('[data-type="equal"]');
-const clear = document.querySelector('[data-type="clear"]');
-const deleteLast = document.querySelector('[data-type="delete"]');
+const equal = document.querySelector('.equal');
+const clear = document.querySelector('.clear');
+const deleteLast = document.querySelector('.delete');
 
-keys.forEach((key) => {
-  key.addEventListener('click', (e) => {
-    let keyPressed = e.target.innerText;
-    let showDisplay = display.innerText;
+decimal.addEventListener('click', () => {
+  addDecimal();
+});
 
-    if (e.target.classList.contains('number') || e.target.classList.contains('operator')) {
-      if (showDisplay === '0' && keyPressed === '0') {
-        display.innerText = '0';
-      } else if (showDisplay === '0') {
-        display.innerText = keyPressed;
-      } else {
-        display.innerText += keyPressed;
-      }
-    }
+equal.addEventListener('click', () => {
+  if (currentNum != '' && previousNum != '') {
+    compute();
+  }
+});
 
-    clear.addEventListener('click', (e) => {
-      display.innerText = '0';
-    });
+clear.addEventListener('click', clearCalculator);
 
-    // deleteLast.addEventListener('click', (e) => {
-    //   if (display.textContent.length) {
-    //     display.textContent = display.textContent.slice('0', '-1');
-    //   }
-    // });
+deleteLast.addEventListener('click', handleDelete);
 
-    // switch (display.innerText) {
-    //   case 'clear':
-    //     display.textContent = '0';
-    //     break;
-    //   case '←':
-    //     if (showDisplay) {
-    //       showDisplay = display.textContent.slice(0, -1);
-    //     }
-    //     break;
-    //   // case '=':
-    //   //   compute();
-    // }
+numbers.forEach((num) => {
+  num.addEventListener('click', (e) => {
+    handleNumber(e.target.value);
   });
 });
 
-function compute(number, op, number2) {
-  console.log(number, op, number2);
+function handleNumber(number) {
+  if (previousNum !== '' && currentNum !== '' && operator === '') {
+    previousNum = '';
+    currentDisplay.textContent = currentNum;
+  }
+  if (currentNum.length <= 11) {
+    currentNum += number;
+    currentDisplay.textContent = currentNum;
+  }
+}
+
+operators.forEach((op) => {
+  op.addEventListener('click', (e) => {
+    handleOperator(e.target.value);
+  });
+});
+
+function handleOperator(op) {
+  if (previousNum === '') {
+    previousNum = currentNum;
+    operatorCheck(op);
+  } else if (currentNum === '') {
+    operatorCheck(op);
+  } else {
+    compute();
+    operator = op;
+    currentDisplay.textContent = '0';
+    previousDisplay.textContent = previousNum + ' ' + operator;
+  }
+}
+
+function operatorCheck(text) {
+  operator = text;
+  previousDisplay.textContent = previousNum + ' ' + operator;
+  currentDisplay.textContent = '0';
+  currentNum = '';
+}
+
+function compute() {
+  previousNum = Number(previousNum);
+  currentNum = Number(currentNum);
+
+  if (operator === '+') {
+    previousNum += currentNum;
+  } else if (operator === '-') {
+    previousNum -= currentNum;
+  } else if (operator === 'x') {
+    previousNum *= currentNum;
+  } else if (operator === '/') {
+    if (currentNum <= 0) {
+      previousNum = 'Error';
+      displayResults();
+      return;
+    }
+    previousNum /= currentNum;
+  }
+  previousNum = roundNumber(previousNum);
+  previousNum = previousNum.toString();
+  displayResults();
+}
+
+function roundNumber(num) {
+  return Math.round(num * 100000) / 100000;
+}
+
+function displayResults() {
+  if (previousNum.length <= 11) {
+    currentDisplay.textContent = previousNum;
+  } else {
+    currentDisplay.textContent = previousNum.slice(0, 11) + '...';
+  }
+  previousDisplay.textContent = '';
+  operator = '';
+  currentNum = '';
+}
+
+function clearCalculator() {
+  currentNum = '';
+  previousNum = '';
+  operator = '';
+  currentDisplay.textContent = '0';
+  previousDisplay.textContent = '';
+}
+
+function addDecimal() {
+  if (!currentNum.includes('.')) {
+    currentNum += '.';
+    currentDisplay.textContent = currentNum;
+  }
+}
+
+function handleKeyPress(e) {
+  e.preventDefault();
+  if (e.key >= 0 && e.key <= 9) {
+    handleNumber(e.key);
+  }
+  if (e.key === 'Enter' || (e.key === '=' && currentNum != '' && previousNum != '')) {
+    compute();
+  }
+  if (e.key === '+' || e.key === '-' || e.key === '/') {
+    handleOperator(e.key);
+  }
+  if (e.key === '*') {
+    handleOperator('x');
+  }
+  if (e.key === '.') {
+    addDecimal();
+  }
+  if (e.key === 'Backspace') {
+    handleDelete();
+  }
+  console.log(e.key);
+}
+
+function handleDelete() {
+  if (currentNum !== '') {
+    currentNum = currentNum.slice(0, -1);
+    currentDisplay.textContent = currentNum;
+    if (currentNum === '') {
+      currentDisplay.textContent = '0';
+    }
+  }
+  if (currentNum === '' && previousNum !== '' && operator === '') {
+    previousNum = previousNum.slice(0, -1);
+    currentDisplay.textContent = previousNum;
+  }
 }

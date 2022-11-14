@@ -16,52 +16,47 @@
     <title>Calculator</title>
   </head>
   <body>
-    <main>
-      <div class="calculator">
-        
-        <div class="display">
+    <div class="container">
+      <main class="calculator">
+        <section class="display">
           <div id="previous"></div>
           <div id="current">0</div>
-        </div>
+        </section>
 
-        <div class="keys">
+        <section class="keys">
+          <button class="clear" value="AC">AC</button>
+          <button class="delete" value="delete">&#8592;</button>
+          <button class="operator" value="/">&#247;</button>
+          <button class="number" value="7">7</button>
+          <button class="number" value="8">8</button>
+          <button class="number" value="9">9</button>
+          <button class="operator" value="x">x</button>
 
-          <button class='clear' data-type="clear">AC</button>
-          <button class='delete' data-type="delete">&#8592;</button>
-          <button class='operator' data-type="operation">&#247;</button>
-          <button class="number" data-type="number">7</button>
-          <button class="number" data-type="number">8</button>
-          <button class="number" data-type="number">9</button>
-          <button class='operator' data-type="operation" >x</button>
+          <button class="number" value="4">4</button>
+          <button class="number" value="5">5</button>
+          <button class="number" value="6">6</button>
+          <button class="operator" value="-">-</button>
 
-          <button class="number" data-type="number">4</button>
-          <button class="number" data-type="number">5</button>
-          <button class="number" data-type="number">6</button>
-          <button class='operator' data-type="operation">-</button>
+          <button class="number" value="1">1</button>
+          <button class="number" value="2">2</button>
+          <button class="number" value="3">3</button>
+          <button class="operator" value="+">+</button>
 
-          <button class="number" data-type="number">1</button>
-          <button class="number" data-type="number">2</button>
-          <button class="number" data-type="number">3</button>
-          <button class='operator' data-type="operation">+</button>
-
-          <button class="number" data-type="number">0</button>
-          <button class="decimal" data-type="number">.</button>
-          <button class="equal-sign" data-type="equal">=</button>
-
-        </div>
-      </div>
+          <button class="number" value="0">0</button>
+          <button class="decimal" value=".">.</button>
+          <button class="equal" value="=">=</button>
+        </section>
       </main>
-      <footer>
-        <p>Copyright ©
-          <script>
-          document.write(new Date().getFullYear())
+    </div>
+    <footer>
+      <p>
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear());
         </script>
         Alkxs
-        </p>
-        <a href="https://github.com/Alkxs" target="_blank">
-        <i class="fab fa-github"></i
-      ></a>
-      </footer>
-    </div>
+      </p>
+      <a href="https://github.com/Alkxs" target="_blank"> <i class="fab fa-github"></i></a>
+    </footer>
   </body>
 </html>
